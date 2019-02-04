@@ -32,37 +32,37 @@
         <form [formGroup]="form" (ngSubmit)="saveEntry()">
 
            <ion-list>
+
               <ion-item-group>
-                 <ion-item-divider color="light">Nombre de la Tecnología *</ion-item-divider>
+                 <ion-item-divider color="light">Nombres *</ion-item-divider>
                  <ion-item>
                     <ion-input
                        type="text"
-                       placeholder="Ingrese Nombre..."
+                       placeholder="Ingrese Nombre y Apellido..."
                        formControlName="nombre"
-                       [(ngModel)]="technologyName"></ion-input>
+                       [(ngModel)]="Nombre"></ion-input>
                  </ion-item>
               </ion-item-group>
-
 
               <ion-item-group>
-                 <ion-item-divider color="light">Descripción de la Tecnología *</ion-item-divider>
-                 <ion-item>
-                    <ion-textarea
-                       placeholder="Descripción..."
-                       formControlName="descripcion"
-                       rows="6"
-                       [(ngModel)]="technologyDescription"></ion-textarea>
-                 </ion-item>
-              </ion-item-group>
+                  <ion-item-divider color="light">WhatsApp *</ion-item-divider>
+                  <ion-item>
+                     <ion-input
+                        type="number"
+                        placeholder="Ingrese WhatsApp..."
+                        formControlName="whatsapp"
+                        [(ngModel)]="WhatsApp"></ion-input>
+                  </ion-item>
+               </ion-item-group>
 
+               
 
               <ion-item>
                  <button
-                    ion-button
-                    color="primary"
+                    ion-button color="primary"
                     text-center
                     block
-                    [disabled]="!form.valid">Agregar</button>
+                    >Agregar</button>
               </ion-item>
 
            </ion-list>

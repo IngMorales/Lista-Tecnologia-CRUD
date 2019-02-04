@@ -12,8 +12,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AddTechnologyPage {
 
    public form                   : FormGroup;
-   public technologyName         : any;
-   public technologyDescription  : any;
+   public Nombre         : any;
+   public Whatsapp         : any;
+   public Municipio         : any;
+   public Ocupacion         : any;
+   public RedSocial         : any;
+   public Lider         : any;
+   public Voluntario         : any;
+   //public technologyName         : any;
+   //public technologyDescription  : any;
    public isEdited               : boolean = false;
    public hideForm               : boolean = false;
    public pageTitle              : string;
@@ -34,7 +41,14 @@ export class AddTechnologyPage {
       // Create form builder validation rules
       this.form = fb.group({
          "nombre"                  : ["", Validators.required],
-         "descripcion"           : ["", Validators.required]
+         "whatsapp"                  : ["", Validators.required],
+         "municipio"                  : ["", Validators.required],
+         "ocupacion"                  : ["", Validators.required],
+         "redsocial"                  : ["", Validators.required],
+         "lider"                  : ["", Validators.required],
+         "voluntario"                  : ["", Validators.required],
+         //"nombre"                  : ["", Validators.required],
+         //"descripcion"           : ["", Validators.required]
       });
    }
 
@@ -57,15 +71,22 @@ export class AddTechnologyPage {
 
    selectEntry(item : any) : void
    {
-      this.technologyName        = item.nombre;
-      this.technologyDescription = item.descripcion;
+      this.Nombre        = item.nombre;
+      this.Whatsapp        = item.whatsapp;
+      this.Municipio        = item.municipio;
+      this.Ocupacion        = item.ocupacion;
+      this.RedSocial        = item.redsocial;
+      this.Lider        = item.lider;
+      this.Voluntario        = item.voluntario;
+      //this.technologyName        = item.nombre;
+      //this.technologyDescription = item.descripcion;
       this.recordID              = item.id;
    }
 
-   createEntry(nombre : string, descripcion : string) : void
+   createEntry( nombre: string, whatsapp : number, municipio : number, ocupacion: string, redsocial:number, lider:number, voluntario:number/*nombre : string, descripcion : string*/) : void
    {
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= { "key" : "create", "nombre" : nombre, "descripcion" : descripcion },
+          options 	: any		= { "key" : "create", "nombre" : nombre, "whatsapp" : whatsapp, "municipio" : municipio, "ocupacion" : ocupacion, "redsocial" : redsocial, "lider" : lider, "voluntario" : voluntario /*"nombre" : nombre, "descripcion" : descripcion*/ },
           url       : any      	= this.baseURI + "manage-data.php";
 
       this.http.post(url, JSON.stringify(options), headers)
@@ -73,7 +94,7 @@ export class AddTechnologyPage {
       {
          // If the request was successful notify the user
          this.hideForm   = true;
-         this.sendNotification(`La tecnología: ${nombre} fue agregada`);
+         this.sendNotification(`La persona: ${nombre} fue agregada`);
       },
       (error : any) =>
       {
@@ -81,10 +102,10 @@ export class AddTechnologyPage {
       });
    }
 
-   updateEntry(nombre : string, descripcion : string) : void
+   updateEntry(nombre: string, whatsapp : number, municipio : number, ocupacion: string, redsocial:number, lider:number, voluntario:number/*nombre : string, descripcion : string*/) : void
    {
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-          options 	: any		= { "key" : "update", "nombre" : nombre, "descripcion" : descripcion, "recordID" : this.recordID},
+          options 	: any		= { "key" : "update", "nombre" : nombre, "whatsapp" : whatsapp, "municipio" : municipio, "ocupacion" : ocupacion, "redsocial" : redsocial, "lider" : lider, "voluntario" : voluntario, /*"nombre" : nombre, "descripcion" : descripcion*/ "recordID" : this.recordID},
           url       : any      	= this.baseURI + "manage-data.php";
 
       this.http
@@ -93,7 +114,7 @@ export class AddTechnologyPage {
       {
          // If the request was successful notify the user
          this.hideForm  =  true;
-         this.sendNotification(`La tecnología: ${nombre} fue actualizada`);
+         this.sendNotification(`La persona: ${nombre} fue actualizada`);
       },
       (error : any) =>
       {
@@ -113,7 +134,7 @@ export class AddTechnologyPage {
       .subscribe(data =>
       {
          this.hideForm     = true;
-         this.sendNotification(`La tecnología : ${nombre} fue eliminada`);
+         this.sendNotification(`La persona : ${nombre} fue eliminada`);
       },
       (error : any) =>
       {
@@ -123,23 +144,39 @@ export class AddTechnologyPage {
 
    saveEntry() : void
    {
-      let nombre          : string = this.form.controls["nombre"].value,
+     /* let nombre          : string = this.form.controls["nombre"].value,
           descripcion   : string    = this.form.controls["descripcion"].value;
+      */
+      let nombre : string = this.form.controls["nombre"].value,
+      whatsapp : number = this.form.controls["whatsapp"].value,
+      municipio : number = this.form.controls["municipio"].value,
+      ocupacion : string = this.form.controls["ocupacion"].value,
+      redsocial : number = this.form.controls["redsocial"].value,
+      lider : number = this.form.controls["lider"].value,
+      voluntario : number = this.form.controls["voluntario"].value;
 
       if(this.isEdited)
       {
-         this.updateEntry(nombre, descripcion);
+         this.updateEntry(nombre, whatsapp, municipio, ocupacion, redsocial, lider, voluntario);
       }
       else
       {
-         this.createEntry(nombre, descripcion);
+         this.createEntry(nombre, whatsapp, municipio, ocupacion, redsocial, lider, voluntario);
       }
    }
 
    resetFields() : void
    {
-      this.technologyName           = "";
-      this.technologyDescription    = "";
+      this.Nombre           = "";
+      this.Whatsapp           = "";
+      this.Municipio           = "";
+      this.Ocupacion           = "";
+      this.RedSocial           = "";
+      this.Lider           = "";
+      this.Voluntario           = "";
+
+      /*this.technologyName           = "";
+      this.technologyDescription    = "";*/
    }
 
    sendNotification(message : string)  : void

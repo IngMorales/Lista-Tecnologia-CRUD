@@ -83,7 +83,7 @@ export class AddTechnologyPage {
       this.recordID              = item.id;
    }
 
-   createEntry( nombre: string, whatsapp : number, municipio : number, ocupacion: string, redsocial:number, lider:number, voluntario:number/*nombre : string, descripcion : string*/) : void
+   createEntry( nombre: string, whatsapp : string, municipio : string, ocupacion: string, redsocial:string, lider:string, voluntario:string/*nombre : string, descripcion : string*/) : void
    {
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
           options 	: any		= { "key" : "create", "nombre" : nombre, "whatsapp" : whatsapp, "municipio" : municipio, "ocupacion" : ocupacion, "redsocial" : redsocial, "lider" : lider, "voluntario" : voluntario /*"nombre" : nombre, "descripcion" : descripcion*/ },
@@ -102,7 +102,7 @@ export class AddTechnologyPage {
       });
    }
 
-   updateEntry(nombre: string, whatsapp : number, municipio : number, ocupacion: string, redsocial:number, lider:number, voluntario:number/*nombre : string, descripcion : string*/) : void
+   updateEntry(nombre: string, whatsapp : string, municipio : string, ocupacion: string, redsocial:string, lider:string, voluntario:string/*nombre : string, descripcion : string*/) : void
    {
       let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
           options 	: any		= { "key" : "update", "nombre" : nombre, "whatsapp" : whatsapp, "municipio" : municipio, "ocupacion" : ocupacion, "redsocial" : redsocial, "lider" : lider, "voluntario" : voluntario, /*"nombre" : nombre, "descripcion" : descripcion*/ "recordID" : this.recordID},
@@ -148,12 +148,12 @@ export class AddTechnologyPage {
           descripcion   : string    = this.form.controls["descripcion"].value;
       */
       let nombre : string = this.form.controls["nombre"].value,
-      whatsapp : number = this.form.controls["whatsapp"].value,
-      municipio : number = this.form.controls["municipio"].value,
+      whatsapp : string = this.form.controls["whatsapp"].value,
+      municipio : string = this.form.controls["municipio"].value,
       ocupacion : string = this.form.controls["ocupacion"].value,
-      redsocial : number = this.form.controls["redsocial"].value,
-      lider : number = this.form.controls["lider"].value,
-      voluntario : number = this.form.controls["voluntario"].value;
+      redsocial : string = this.form.controls["redsocial"].value,
+      lider : string = this.form.controls["lider"].value,
+      voluntario : string = this.form.controls["voluntario"].value;
 
       if(this.isEdited)
       {
